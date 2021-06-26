@@ -14,9 +14,9 @@ class StatisticsServiceTest {
     void testCalculateMiddleSum() {
         ru.netology.stats.StatisticsService service = new ru.netology.stats.StatisticsService();
         int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int sum = service.calculateSum(sales);
+        service.calculateSum(sales);
         int expected = 15;
-        int actual = service.calculateMiddleSum(sales, sum);
+        int actual = service.calculateMiddleSum(sales);
         assertEquals(expected, actual);
     }
     @org.junit.jupiter.api.Test
@@ -40,10 +40,9 @@ class StatisticsServiceTest {
     void sumMonthsUnderMiddle() {
         ru.netology.stats.StatisticsService service = new ru.netology.stats.StatisticsService();
         int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int sum = service.calculateSum(sales);
-        int middle = service.calculateMiddleSum(sales, sum);
+        service.calculateMiddleSum(sales);
         int expected = 5;
-        int actual = service.sumMonthsUnderMiddle(sales, middle);
+        int actual = service.sumMonthsUnderMiddle(sales);
         assertEquals(expected, actual);
     }
 
@@ -51,10 +50,9 @@ class StatisticsServiceTest {
     void sumMonthsUpMiddle() {
         ru.netology.stats.StatisticsService service = new ru.netology.stats.StatisticsService();
         int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int sum = service.calculateSum(sales);
-        int middle = service.calculateMiddleSum(sales, sum);
+        service.calculateMiddleSum(sales);
         int expected = 5;
-        int actual = service.sumMonthsUpMiddle(sales, middle);
+        int actual = service.sumMonthsUpMiddle(sales);
         assertEquals(expected, actual);
     }
 }

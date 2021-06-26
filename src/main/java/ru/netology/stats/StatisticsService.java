@@ -9,11 +9,13 @@ public class StatisticsService {
     return sum;
   }
 
-  public int calculateMiddleSum(int[] sales, int sum) {
-    int middle = 0;
+  public int calculateMiddleSum(int[] sales) {
+    int sumMiddle = 0;
+    int middle;
     for (int sale : sales) {
-      middle = sum / sales.length;
+      sumMiddle += sale;
     }
+    middle = sumMiddle / sales.length;
     return middle;
   }
 
@@ -41,8 +43,9 @@ public class StatisticsService {
     return minMonth + 1;
   }
 
-  public int sumMonthsUnderMiddle(int[] sales, int middle) {
-    int underMiddleMonths = 0;
+  public int sumMonthsUnderMiddle(int[] sales) {
+    int middle = 15;
+    int underMiddleMonths=0;
     for (int sale : sales) {
       if (middle > sale)
         underMiddleMonths++;
@@ -50,7 +53,8 @@ public class StatisticsService {
     return underMiddleMonths;
   }
 
-  public int sumMonthsUpMiddle(int[] sales, int middle) {
+  public int sumMonthsUpMiddle(int[] sales) {
+    int middle=15;
     int upMiddleMonths = 0;
     for (int sale : sales) {
       if (middle < sale)
