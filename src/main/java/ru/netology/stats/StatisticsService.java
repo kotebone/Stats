@@ -10,56 +10,88 @@ public class StatisticsService {
   }
 
   public int calculateMiddleSum(int[] sales) {
-    int sumMiddle = 0;
-    int middle;
-    for (int sale : sales) {
-      sumMiddle += sale;
-    }
-    middle = sumMiddle / sales.length;
-    return middle;
+    return calculateSum (sales) / sales.length;
   }
 
   public int findMax(int[] sales) {
-    int maxMonth = 0;
-    int month = 0;
+    int max = getMax(sales);
+    int monthMax = 0;
+    int resultMonth = 0;
     for (int sale : sales) {
-      if (sale >= sales[maxMonth]) {
-        maxMonth = month;
+      monthMax++;
+      if (sale == max) {
+        return monthMax;
       }
-      month = month + 1;
     }
-    return maxMonth + 1;
+    return resultMonth;
+  }
+
+
+  public int findMaxSec(int[] sales) {
+    int max = getMax(sales);
+    int monthMax = 0;
+    int resultMonth = 0;
+    for (int sale : sales) {
+      monthMax++;
+      if (sale == max) {
+        resultMonth = monthMax;
+
+      }
+    }
+    return resultMonth;
   }
 
   public int findMin(int[] sales) {
-    int minMonth = 0;
-    int month = 0;
+    int min = getMin(sales);
+    int monthMin = 0;
+    int resultMonth = 0;
     for (int sale : sales) {
-      if (sale <= sales[minMonth]) {
-        minMonth = month;
+      monthMin++;
+      if (sale == min) {
+        resultMonth = monthMin;
       }
-      month = month + 1;
     }
-    return minMonth + 1;
+    return resultMonth;
   }
 
   public int sumMonthsUnderMiddle(int[] sales) {
-    int middle = 15;
-    int underMiddleMonths=0;
+    int middleSum = calculateMiddleSum(sales);
+    int monthUnder = 0;
     for (int sale : sales) {
-      if (middle > sale)
-        underMiddleMonths++;
+      if (middleSum < sale) {
+        monthUnder++;
+      }
     }
-    return underMiddleMonths;
+    return monthUnder;
+  }
+  public int sumMonthsUpMiddle(int[] sales) {
+    int middleSum = calculateMiddleSum(sales);
+    int monthUp = 0;
+    for (int sale : sales) {
+      if (middleSum > sale) {
+        monthUp++;
+      }
+    }
+    return monthUp;
   }
 
-  public int sumMonthsUpMiddle(int[] sales) {
-    int middle=15;
-    int upMiddleMonths = 0;
+  private int getMin(int[] sales) {
+    int min = sales[0];
     for (int sale : sales) {
-      if (middle < sale)
-        upMiddleMonths++;
+      if (sale < min) {
+        min = sale;
+      }
     }
-    return upMiddleMonths;
+    return min;
+  }
+
+  private int getMax(int[] sales) {
+    int max = sales[0];
+    for (int sale : sales) {
+      if (sale > max) {
+        max = sale;
+      }
+    }
+    return max;
   }
 }

@@ -1,58 +1,40 @@
 package ru.netology.stats;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class StatisticsServiceTest {
-    @org.junit.jupiter.api.Test
-    void calculateSum() {
-        ru.netology.stats.StatisticsService service = new ru.netology.stats.StatisticsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 180;
-        int actual = service.calculateSum(sales);
-        assertEquals(expected, actual);
-    }
-    @org.junit.jupiter.api.Test
-    void testCalculateMiddleSum() {
-        ru.netology.stats.StatisticsService service = new ru.netology.stats.StatisticsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        service.calculateSum(sales);
-        int expected = 15;
-        int actual = service.calculateMiddleSum(sales);
-        assertEquals(expected, actual);
-    }
-    @org.junit.jupiter.api.Test
-    void findMax() {
-        ru.netology.stats.StatisticsService service = new ru.netology.stats.StatisticsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 8;
-        int actual = service.findMax(sales);
-        assertEquals(expected, actual);
-    }
-    @org.junit.jupiter.api.Test
-    void findMin() {
-        ru.netology.stats.StatisticsService service = new ru.netology.stats.StatisticsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 9;
-        int actual = service.findMin(sales);
-        assertEquals(expected, actual);
+public class StatisticsServiceTest {
+    int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
+    StatisticsService service = new StatisticsService();
+
+    @Test
+    void shouldReturnCalculateSum() {
+        assertEquals(180, service.calculateSum(sales));
     }
 
-    @org.junit.jupiter.api.Test
-    void sumMonthsUnderMiddle() {
-        ru.netology.stats.StatisticsService service = new ru.netology.stats.StatisticsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        service.calculateMiddleSum(sales);
-        int expected = 5;
-        int actual = service.sumMonthsUnderMiddle(sales);
-        assertEquals(expected, actual);
+    @Test
+    void shouldReturnMiddleSum() {
+        assertEquals(15, service.calculateMiddleSum(sales));
     }
 
-    @org.junit.jupiter.api.Test
-    void sumMonthsUpMiddle() {
-        ru.netology.stats.StatisticsService service = new ru.netology.stats.StatisticsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        service.calculateMiddleSum(sales);
-        int expected = 5;
-        int actual = service.sumMonthsUpMiddle(sales);
-        assertEquals(expected, actual);
+    @Test
+    void shouldReturnMaxMonth() {
+        assertEquals(6, service.findMax(sales));
+        assertEquals(8, service.findMaxSec(sales));
+    }
+
+    @Test
+    void shouldReturnMinMonth() {
+        assertEquals(9, service.findMin(sales));
+    }
+
+
+    @Test
+    void shouldReturnMonthsUnderMiddle() {
+        assertEquals(5, service.sumMonthsUnderMiddle(sales));
+    }
+
+    @Test
+    void shouldReturnMonthsUpMiddle() {
+        assertEquals(5, service.sumMonthsUpMiddle(sales));
     }
 }
